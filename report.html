@@ -13,18 +13,15 @@
 </head>
 <body data-page="viewer">
 
-  <header class="wrap topbar">
-    <a class="brand" href="index.html"></a>
-    <button class="lang-toggle" type="button"></button>
+  <header class="wrap topbar viewer-header">
+    <div></div>
   </header>
 
   <main class="wrap">
     <div class="viewer-head">
       <div>
-        <a class="back" href="index.html"></a>
         <h1></h1>
       </div>
-      <span class="counter"></span>
     </div>
 
     <!-- Ảnh trang báo cáo + hai nút lật phủ lên hai mép -->
@@ -35,7 +32,10 @@
     </div>
 
     <!-- Dải ảnh nhỏ để nhảy tới trang bất kỳ -->
-    <div class="strip"></div>
+    <div class="strip-wrap">
+      <div class="strip"></div>
+      <span class="counter"></span>
+    </div>
 
     <p class="viewer-summary"></p>
   </main>

@@ -110,8 +110,6 @@ function renderViewer() {
   const id = params.get("id");
   const report = DATA.reports.find(r => r.id === id);
 
-  document.querySelector(".back").textContent = "← " + t(DATA.ui.back);
-
   if (!report) {
     document.querySelector(".viewer-head h1").textContent = t(DATA.ui.notFound);
     return;
