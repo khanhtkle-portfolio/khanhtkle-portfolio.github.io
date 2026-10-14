@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="viewer">
+
+  <header class="wrap topbar">
+    <a class="brand" href="index.html"></a>
+    <button class="lang-toggle" type="button"></button>
+  </header>
+
+  <main class="wrap">
+    <div class="viewer-head">
+      <div>
+        <a class="back" href="index.html"></a>
+        <h1></h1>
+      </div>
+      <span class="counter"></span>
+    </div>
+
+    <!-- Ảnh trang báo cáo + hai nút lật phủ lên hai mép -->
+    <div class="stage">
+      <img src="" alt="">
+      <button class="nav prev" type="button"><span>‹</span></button>
+      <button class="nav next" type="button"><span>›</span></button>
+    </div>
+
+    <!-- Dải ảnh nhỏ để nhảy tới trang bất kỳ -->
+    <div class="strip"></div>
+
+    <p class="viewer-summary"></p>
+  </main>
+
+  <!-- Theo dõi lượt xem (GoatCounter), giống index.html
+  <script data-goatcounter="https://MA-CUA-BAN.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>

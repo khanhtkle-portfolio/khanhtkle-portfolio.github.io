@@ -1,0 +1,62 @@
+{
+  "site": {
+    "title":    { "vi": "Tác phẩm tiêu biểu", "en": "Selected Works" },
+    "subtitle": { "vi": "Báo cáo Power BI chọn lọc từ các dự án thực tế. Dữ liệu đã được ẩn danh hoặc thay bằng số liệu minh họa.",
+                  "en": "Power BI reports selected from real projects. Data has been anonymized or replaced with illustrative figures." },
+    "author":   "Khanh"
+  },
+
+  "ui": {
+    "pages":      { "vi": "trang",            "en": "pages" },
+    "page":       { "vi": "Trang",            "en": "Page" },
+    "back":       { "vi": "Tất cả tác phẩm",  "en": "All works" },
+    "prev":       { "vi": "Trang trước",      "en": "Previous page" },
+    "next":       { "vi": "Trang sau",        "en": "Next page" },
+    "notFound":   { "vi": "Không tìm thấy báo cáo này.", "en": "This report could not be found." },
+    "switchTo":   { "vi": "English",          "en": "Tiếng Việt" }
+  },
+
+  "domains": {
+    "finance":   { "vi": "Tài chính", "en": "Finance" },
+    "logistics": { "vi": "Logistics", "en": "Logistics" }
+  },
+
+  "reports": [
+    {
+      "id": "han-muc-tin-dung",
+      "folder": "han-muc-tin-dung",
+      "from": 1, "to": 12,
+      "domain": "finance",
+      "title":   { "vi": "Hạn mức tín dụng", "en": "Credit Limits" },
+      "summary": { "vi": "Kế hoạch so với thực hiện về sản lượng, doanh thu, lợi nhuận theo từng pháp nhân, kèm các chỉ số tài chính ngân hàng dùng để xét hạn mức vay.",
+                   "en": "Plan vs. actual volume, revenue and profit by entity, alongside the financial ratios banks use to assess credit limits." }
+    },
+    {
+      "id": "cung-cau-usd",
+      "folder": "cung-cau-usd",
+      "from": 1, "to": 4,
+      "domain": "finance",
+      "title":   { "vi": "Cung cầu USD", "en": "USD Supply & Demand" },
+      "summary": { "vi": "Đối chiếu nhu cầu thanh toán USD với lượng đã mua, theo dõi tỷ giá bình quân và lãi lỗ so với tỷ giá giao ngay.",
+                   "en": "Matches USD payment needs against purchases, tracking the average buy rate and gains or losses versus the spot rate." }
+    },
+    {
+      "id": "no-phai-thu",
+      "folder": "no-phai-thu",
+      "from": 1, "to": 5,
+      "domain": "finance",
+      "title":   { "vi": "Nợ phải thu", "en": "Accounts Receivable" },
+      "summary": { "vi": "Nợ quá hạn, tuổi nợ, lãi chiếm dụng vốn, tiến độ thu hồi và số ngày thanh toán thực tế so với điều khoản.",
+                   "en": "Overdue balances, aging, the financing cost of late payments, collection progress, and actual payment days versus terms." }
+    },
+    {
+      "id": "bao-hiem-hang-hoa",
+      "folder": "bao-hiem",
+      "from": 1, "to": 3,
+      "domain": "logistics",
+      "title":   { "vi": "Bảo hiểm hàng hóa", "en": "Cargo Insurance" },
+      "summary": { "vi": "Tiến độ cấp chứng nhận bảo hiểm cho lô hàng nhập khẩu, phí bảo hiểm so với tiền bồi thường, và tiến độ hồ sơ bồi thường theo nhân viên.",
+                   "en": "Insurance certificate issuance for import shipments, premiums versus claims paid, and claim-file progress by staff." }
+    }
+  ]
+}
