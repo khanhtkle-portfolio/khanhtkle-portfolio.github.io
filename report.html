@@ -4,41 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a18'/%3E%3Cpath d='M9 22v-6m7 6V10m7 12v-9' stroke='%23f2f1ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Chưa đăng nhập thì chuyển về trang đăng nhập -->
+  <script>
+    try { if (!sessionStorage.getItem("auth")) location.replace("login.html"); } catch (_) {}
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="viewer">
 
-  <header class="wrap topbar viewer-header">
-    <div></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Thanh trên: cùng nhịp với trang chủ. Ô vuông bên trái là nút về trang chủ (vị trí của biểu tượng Sightline) -->
+  <header class="topbar">
+    <a class="back" href="index.html">
+      <svg viewBox="0 0 6 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.25 .75 .75 6l4.5 5.25"/></svg>
+    </a>
+
+    <!-- Tên báo cáo cũng là nút chuyển nhanh sang báo cáo khác -->
+    <div class="pop switcher">
+      <h1 class="title-h">
+        <button class="title-btn" type="button" aria-expanded="false" aria-haspopup="true">
+          <span class="topbar-title"></span>
+          <svg class="ico caret" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"></svg>
+        </button>
+      </h1>
+      <div class="pop-menu switch-menu" hidden></div>
+    </div>
+    <span class="topbar-tagline"></span>
+
+    <div class="pop info">
+      <button class="icon-btn info-btn" type="button" aria-expanded="false" aria-haspopup="true"></button>
+      <div class="pop-menu info-menu" hidden></div>
+    </div>
+
+    <div class="pop notif">
+      <button class="icon-btn notif-btn" type="button" aria-expanded="false" aria-haspopup="true">
+        <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"/></svg>
+        <span class="badge" hidden></span>
+      </button>
+      <div class="pop-menu notif-menu" hidden></div>
+    </div>
+
+    <div class="pop user">
+      <button class="user-btn" type="button" aria-expanded="false" aria-haspopup="true">
+        <span class="avatar"></span>
+        <span class="user-text"><b class="user-name"></b><span class="user-role"></span></span>
+      </button>
+      <div class="pop-menu user-menu" hidden></div>
+    </div>
   </header>
 
-  <main class="wrap">
-    <div class="viewer-head">
-      <div>
-        <h1></h1>
+  <!-- Trang xem: không cuộn. Ảnh báo cáo chiếm hết chỗ, thanh trang nằm dưới cùng -->
+  <main class="viewer" id="main">
+    <div class="stage">
+      <img src="" alt="" draggable="false">
+      <button class="nav prev" type="button"><span>‹</span></button>
+      <button class="nav next" type="button"><span>›</span></button>
+      <div class="stage-tools">
+        <button class="tool tool-share" type="button"></button>
+        <button class="tool tool-download" type="button"></button>
+        <button class="tool tool-fs" type="button"></button>
+      </div>
+      <div class="zoom" role="group">
+        <button class="tool zoom-out" type="button"></button>
+        <button class="zoom-val" type="button"></button>
+        <button class="tool zoom-in" type="button"></button>
       </div>
     </div>
 
-    <!-- Ảnh trang báo cáo + hai nút lật phủ lên hai mép -->
-    <div class="stage">
-      <img src="" alt="">
-      <button class="nav prev" type="button"><span>‹</span></button>
-      <button class="nav next" type="button"><span>›</span></button>
-    </div>
-
-    <!-- Dải ảnh nhỏ để nhảy tới trang bất kỳ -->
-    <div class="strip-wrap">
+    <!-- Thanh trang có nền riêng: ảnh nhỏ cuộn ngang bên trái, bộ đếm trang bên phải -->
+    <nav class="pager">
       <div class="strip"></div>
-      <span class="counter"></span>
-    </div>
-
-    <p class="viewer-summary"></p>
+      <div class="counter"><span class="counter-label"></span><b class="counter-num"></b></div>
+    </nav>
   </main>
+
+  <div class="toast" role="status" aria-live="polite" hidden></div>
 
   <!-- Theo dõi lượt xem (GoatCounter), giống index.html
   <script data-goatcounter="https://MA-CUA-BAN.goatcounter.com/count"

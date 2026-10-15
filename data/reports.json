@@ -1,62 +1,698 @@
 {
   "site": {
-    "title":    { "vi": "Tác phẩm tiêu biểu", "en": "Selected Works" },
-    "subtitle": { "vi": "Báo cáo Power BI chọn lọc từ các dự án thực tế. Dữ liệu đã được ẩn danh hoặc thay bằng số liệu minh họa.",
-                  "en": "Power BI reports selected from real projects. Data has been anonymized or replaced with illustrative figures." },
-    "author":   "Khanh"
+    "title": "Sightline",
+    "author": "Khanh",
+    "tagline": {
+      "vi": "Cổng báo cáo vận hành",
+      "en": "Operations reporting"
+    }
   },
-
   "ui": {
-    "pages":      { "vi": "trang",            "en": "pages" },
-    "page":       { "vi": "Trang",            "en": "Page" },
-    "back":       { "vi": "Tất cả tác phẩm",  "en": "All works" },
-    "prev":       { "vi": "Trang trước",      "en": "Previous page" },
-    "next":       { "vi": "Trang sau",        "en": "Next page" },
-    "notFound":   { "vi": "Không tìm thấy báo cáo này.", "en": "This report could not be found." },
-    "switchTo":   { "vi": "English",          "en": "Tiếng Việt" }
+    "pages": {
+      "vi": "trang",
+      "en": "pages"
+    },
+    "page": {
+      "vi": "Trang",
+      "en": "Page"
+    },
+    "back": {
+      "vi": "Trang chủ",
+      "en": "Home"
+    },
+    "prev": {
+      "vi": "Trang trước",
+      "en": "Previous page"
+    },
+    "next": {
+      "vi": "Trang sau",
+      "en": "Next page"
+    },
+    "notFound": {
+      "vi": "Không tìm thấy báo cáo này.",
+      "en": "This report could not be found."
+    },
+    "switchTo": {
+      "vi": "English",
+      "en": "Tiếng Việt"
+    }
   },
-
   "domains": {
-    "finance":   { "vi": "Tài chính", "en": "Finance" },
-    "logistics": { "vi": "Logistics", "en": "Logistics" }
+    "finance": {
+      "name": {
+        "vi": "Tài chính",
+        "en": "Finance"
+      },
+      "icon": "coins"
+    },
+    "logistics": {
+      "name": {
+        "vi": "Logistics",
+        "en": "Logistics"
+      },
+      "icon": "box"
+    }
   },
-
   "reports": [
     {
       "id": "han-muc-tin-dung",
       "folder": "han-muc-tin-dung",
-      "from": 1, "to": 12,
+      "from": 1,
+      "to": 12,
       "domain": "finance",
-      "title":   { "vi": "Hạn mức tín dụng", "en": "Credit Limits" },
-      "summary": { "vi": "Kế hoạch so với thực hiện về sản lượng, doanh thu, lợi nhuận theo từng pháp nhân, kèm các chỉ số tài chính ngân hàng dùng để xét hạn mức vay.",
-                   "en": "Plan vs. actual volume, revenue and profit by entity, alongside the financial ratios banks use to assess credit limits." }
+      "title": {
+        "vi": "Hạn mức tín dụng",
+        "en": "Credit Limits"
+      },
+      "summary": {
+        "vi": "Kế hoạch so với thực hiện về sản lượng, doanh thu, lợi nhuận theo từng pháp nhân, kèm các chỉ số tài chính ngân hàng dùng để xét hạn mức vay.",
+        "en": "Plan vs. actual volume, revenue and profit by entity, alongside the financial ratios banks use to assess credit limits."
+      },
+      "owner": {
+        "vi": "Phòng Tài chính – Kế toán",
+        "en": "Finance & Accounting"
+      },
+      "refresh": {
+        "vi": "Hằng tháng",
+        "en": "Monthly"
+      },
+      "tags": {
+        "vi": [
+          "Kế hoạch vs thực hiện",
+          "Ngân hàng",
+          "Pháp nhân"
+        ],
+        "en": [
+          "Plan vs actual",
+          "Banking",
+          "Entities"
+        ]
+      },
+      "questions": {
+        "vi": [
+          "Pháp nhân nào đang vượt hoặc hụt so với kế hoạch?",
+          "Các chỉ số tài chính có đáp ứng điều kiện của ngân hàng không?",
+          "Hạn mức hiện tại có đủ cho kế hoạch sắp tới không?"
+        ],
+        "en": [
+          "Which entity is ahead of or behind plan?",
+          "Do the financial ratios meet the banks' conditions?",
+          "Is the current limit enough for the coming plan?"
+        ]
+      }
     },
     {
       "id": "cung-cau-usd",
       "folder": "cung-cau-usd",
-      "from": 1, "to": 4,
+      "from": 1,
+      "to": 4,
       "domain": "finance",
-      "title":   { "vi": "Cung cầu USD", "en": "USD Supply & Demand" },
-      "summary": { "vi": "Đối chiếu nhu cầu thanh toán USD với lượng đã mua, theo dõi tỷ giá bình quân và lãi lỗ so với tỷ giá giao ngay.",
-                   "en": "Matches USD payment needs against purchases, tracking the average buy rate and gains or losses versus the spot rate." }
+      "title": {
+        "vi": "Cung cầu USD",
+        "en": "USD Supply & Demand"
+      },
+      "summary": {
+        "vi": "Đối chiếu nhu cầu thanh toán USD với lượng đã mua, theo dõi tỷ giá bình quân và lãi lỗ so với tỷ giá giao ngay.",
+        "en": "Matches USD payment needs against purchases, tracking the average buy rate and gains or losses versus the spot rate."
+      },
+      "owner": {
+        "vi": "Phòng Tài chính – Ngân quỹ",
+        "en": "Finance – Treasury"
+      },
+      "refresh": {
+        "vi": "Hằng ngày",
+        "en": "Daily"
+      },
+      "tags": {
+        "vi": [
+          "Ngoại tệ",
+          "Tỷ giá",
+          "Ngân quỹ"
+        ],
+        "en": [
+          "FX",
+          "Exchange rate",
+          "Treasury"
+        ]
+      },
+      "questions": {
+        "vi": [
+          "Đã mua đủ USD cho nhu cầu thanh toán chưa?",
+          "Tỷ giá bình quân của mình đang tốt hơn hay kém hơn giao ngay?",
+          "Lãi lỗ tỷ giá lũy kế đang là bao nhiêu?"
+        ],
+        "en": [
+          "Have we bought enough USD for upcoming payments?",
+          "Is our average rate better or worse than spot?",
+          "What is the cumulative FX gain or loss?"
+        ]
+      }
     },
     {
       "id": "no-phai-thu",
       "folder": "no-phai-thu",
-      "from": 1, "to": 5,
+      "from": 1,
+      "to": 5,
       "domain": "finance",
-      "title":   { "vi": "Nợ phải thu", "en": "Accounts Receivable" },
-      "summary": { "vi": "Nợ quá hạn, tuổi nợ, lãi chiếm dụng vốn, tiến độ thu hồi và số ngày thanh toán thực tế so với điều khoản.",
-                   "en": "Overdue balances, aging, the financing cost of late payments, collection progress, and actual payment days versus terms." }
+      "title": {
+        "vi": "Nợ phải thu",
+        "en": "Accounts Receivable"
+      },
+      "summary": {
+        "vi": "Nợ quá hạn, tuổi nợ, lãi chiếm dụng vốn, tiến độ thu hồi và số ngày thanh toán thực tế so với điều khoản.",
+        "en": "Overdue balances, aging, the financing cost of late payments, collection progress, and actual payment days versus terms."
+      },
+      "owner": {
+        "vi": "Phòng Tài chính – Công nợ",
+        "en": "Finance – Receivables"
+      },
+      "refresh": {
+        "vi": "Hằng ngày",
+        "en": "Daily"
+      },
+      "tags": {
+        "vi": [
+          "Công nợ",
+          "Quá hạn",
+          "Thu hồi"
+        ],
+        "en": [
+          "Receivables",
+          "Overdue",
+          "Collections"
+        ]
+      },
+      "questions": {
+        "vi": [
+          "Khách hàng nào đang nợ quá hạn nhiều nhất?",
+          "Nợ đang phân bổ thế nào theo tuổi nợ?",
+          "Tiến độ thu hồi có đúng kế hoạch không?"
+        ],
+        "en": [
+          "Which customers hold the most overdue balance?",
+          "How is the debt spread across aging buckets?",
+          "Is collection progress on schedule?"
+        ]
+      }
     },
     {
       "id": "bao-hiem-hang-hoa",
       "folder": "bao-hiem",
-      "from": 1, "to": 3,
+      "from": 1,
+      "to": 3,
       "domain": "logistics",
-      "title":   { "vi": "Bảo hiểm hàng hóa", "en": "Cargo Insurance" },
-      "summary": { "vi": "Tiến độ cấp chứng nhận bảo hiểm cho lô hàng nhập khẩu, phí bảo hiểm so với tiền bồi thường, và tiến độ hồ sơ bồi thường theo nhân viên.",
-                   "en": "Insurance certificate issuance for import shipments, premiums versus claims paid, and claim-file progress by staff." }
+      "title": {
+        "vi": "Bảo hiểm hàng hóa",
+        "en": "Cargo Insurance"
+      },
+      "summary": {
+        "vi": "Tiến độ cấp chứng nhận bảo hiểm cho lô hàng nhập khẩu, phí bảo hiểm so với tiền bồi thường, và tiến độ hồ sơ bồi thường theo nhân viên.",
+        "en": "Insurance certificate issuance for import shipments, premiums versus claims paid, and claim-file progress by staff."
+      },
+      "owner": {
+        "vi": "Phòng Logistics – Chứng từ",
+        "en": "Logistics – Documentation"
+      },
+      "refresh": {
+        "vi": "Hằng ngày",
+        "en": "Daily"
+      },
+      "tags": {
+        "vi": [
+          "Bảo hiểm",
+          "Nhập khẩu",
+          "Bồi thường"
+        ],
+        "en": [
+          "Insurance",
+          "Imports",
+          "Claims"
+        ]
+      },
+      "questions": {
+        "vi": [
+          "Lô hàng nào chưa được cấp chứng nhận bảo hiểm?",
+          "Phí bảo hiểm so với tiền bồi thường nhận về ra sao?",
+          "Hồ sơ bồi thường nào đang chậm, ai phụ trách?"
+        ],
+        "en": [
+          "Which shipments still lack an insurance certificate?",
+          "How do premiums compare with claims received?",
+          "Which claim files are delayed, and who owns them?"
+        ]
+      }
     }
-  ]
+  ],
+  "portal": {
+    "search": {
+      "vi": "Tìm báo cáo…",
+      "en": "Search reports…"
+    },
+    "all": {
+      "vi": "Tất cả báo cáo",
+      "en": "All reports"
+    },
+    "recent": {
+      "vi": "Xem gần đây",
+      "en": "Recently viewed"
+    },
+    "depts": {
+      "vi": "Phòng ban",
+      "en": "Departments"
+    },
+    "empty": {
+      "vi": "Không có báo cáo phù hợp.",
+      "en": "No matching reports."
+    },
+    "emptyRecent": {
+      "vi": "Bạn chưa mở báo cáo nào.",
+      "en": "You haven't opened any reports yet."
+    },
+    "pinned": {
+      "vi": "Đã ghim",
+      "en": "Pinned"
+    },
+    "emptyPinned": {
+      "vi": "Chưa ghim báo cáo nào. Bấm biểu tượng ngôi sao trên thẻ để ghim.",
+      "en": "Nothing pinned yet. Click the star on a card to pin it."
+    },
+    "count": {
+      "vi": "{n} báo cáo",
+      "en": "{n} reports"
+    },
+    "countOne": {
+      "vi": "{n} báo cáo",
+      "en": "{n} report"
+    },
+    "sortLabel": {
+      "vi": "Sắp xếp",
+      "en": "Sort"
+    },
+    "sort": {
+      "default": {
+        "vi": "Mặc định",
+        "en": "Default"
+      },
+      "az": {
+        "vi": "Tên A–Z",
+        "en": "Name A–Z"
+      },
+      "pages": {
+        "vi": "Nhiều trang nhất",
+        "en": "Most pages"
+      }
+    },
+    "pin": {
+      "vi": "Ghim",
+      "en": "Pin"
+    },
+    "unpin": {
+      "vi": "Bỏ ghim",
+      "en": "Unpin"
+    },
+    "fullscreen": {
+      "vi": "Toàn màn hình",
+      "en": "Fullscreen"
+    },
+    "persona": {
+      "name": {
+        "vi": "Khách",
+        "en": "Guest"
+      },
+      "initials": {
+        "vi": "K",
+        "en": "G"
+      },
+      "role": {
+        "vi": "Xem thử",
+        "en": "Preview access"
+      },
+      "access": {
+        "vi": "Chỉ xem",
+        "en": "View only"
+      },
+      "accessLabel": {
+        "vi": "Quyền",
+        "en": "Access"
+      },
+      "menu": {
+        "vi": "Tài khoản",
+        "en": "Account"
+      },
+      "signOut": {
+        "vi": "Đăng xuất",
+        "en": "Sign out"
+      }
+    },
+    "continue": {
+      "title": {
+        "vi": "Xem gần nhất",
+        "en": "Last viewed"
+      },
+      "suggested": {
+        "vi": "Gợi ý",
+        "en": "Suggested"
+      },
+      "page": {
+        "vi": "Trang {a} / {b}",
+        "en": "Page {a} of {b}"
+      },
+      "resume": {
+        "vi": "Mở",
+        "en": "Open"
+      },
+      "open": {
+        "vi": "Mở",
+        "en": "Open"
+      }
+    },
+    "activity": {
+      "title": {
+        "vi": "Cập nhật mới",
+        "en": "Recent updates"
+      },
+      "items": [
+        {
+          "report": "no-phai-thu",
+          "when": {
+            "vi": "Hôm nay, 06:30",
+            "en": "Today, 06:30"
+          },
+          "text": {
+            "vi": "số liệu công nợ đã làm mới",
+            "en": "receivables data refreshed"
+          }
+        },
+        {
+          "report": "cung-cau-usd",
+          "when": {
+            "vi": "Hôm qua, 17:05",
+            "en": "Yesterday, 17:05"
+          },
+          "text": {
+            "vi": "cập nhật lượng USD đã mua và tỷ giá",
+            "en": "USD purchases and rates updated"
+          }
+        },
+        {
+          "report": "bao-hiem-hang-hoa",
+          "when": {
+            "vi": "Hôm qua, 09:40",
+            "en": "Yesterday, 09:40"
+          },
+          "text": {
+            "vi": "thêm tiến độ hồ sơ bồi thường",
+            "en": "claim-file progress added"
+          }
+        }
+      ]
+    },
+    "request": {
+      "button": {
+        "vi": "Yêu cầu báo cáo",
+        "en": "Request a report"
+      },
+      "title": {
+        "vi": "Yêu cầu báo cáo mới",
+        "en": "Request a new report"
+      },
+      "name": {
+        "vi": "Tên báo cáo",
+        "en": "Report name"
+      },
+      "dept": {
+        "vi": "Phòng ban",
+        "en": "Department"
+      },
+      "need": {
+        "vi": "Bạn cần biết điều gì?",
+        "en": "What do you need to know?"
+      },
+      "submit": {
+        "vi": "Gửi yêu cầu",
+        "en": "Send request"
+      },
+      "cancel": {
+        "vi": "Hủy",
+        "en": "Cancel"
+      },
+      "errName": {
+        "vi": "Nhập tên báo cáo bạn cần.",
+        "en": "Enter the name of the report you need."
+      },
+      "doneTitle": {
+        "vi": "Đã ghi nhận yêu cầu",
+        "en": "Request recorded"
+      },
+      "doneText": {
+        "vi": "Đây là bản demo nên yêu cầu “{name}” chưa được gửi tới ai. Trong hệ thống thật, yêu cầu sẽ tới người phụ trách phòng ban.",
+        "en": "This is a demo, so the request for “{name}” was not sent to anyone. In the real system it would go to the department owner."
+      },
+      "close": {
+        "vi": "Đóng",
+        "en": "Close"
+      }
+    },
+    "about": {
+      "title": {
+        "vi": "Về Sightline",
+        "en": "About Sightline"
+      },
+      "intro": {
+        "vi": "Sightline là bản mẫu cho hệ thống báo cáo nội bộ tôi muốn xây dựng cho công ty: một cổng duy nhất để nhân viên đăng nhập và xem báo cáo Power BI theo phòng ban.",
+        "en": "Sightline is a prototype of the internal reporting system I want to build for a company: one portal where employees sign in and view Power BI reports by department."
+      },
+      "demoTitle": {
+        "vi": "Trong bản demo này",
+        "en": "In this demo"
+      },
+      "demoItems": [
+        {
+          "vi": "Các báo cáo là mẫu do tôi thiết kế, dữ liệu đã ẩn danh. Chúng thể hiện phong cách trình bày báo cáo của tôi.",
+          "en": "The reports are samples I designed, with anonymised data. They show how I style reports."
+        },
+        {
+          "vi": "Bạn đang vào với tư cách khách. Đăng nhập Microsoft chỉ có trong hệ thống thật.",
+          "en": "You are signed in as a guest. Microsoft sign-in exists only in the real system."
+        },
+        {
+          "vi": "Báo cáo hiển thị dưới dạng ảnh từng trang, nên chưa lọc hay khoan sâu được.",
+          "en": "Reports are shown as page images, so you cannot filter or drill down yet."
+        }
+      ],
+      "realTitle": {
+        "vi": "Hệ thống thật sẽ có",
+        "en": "The real system would have"
+      },
+      "realItems": [
+        {
+          "vi": "Đăng nhập bằng tài khoản công ty",
+          "en": "Sign-in with company accounts"
+        },
+        {
+          "vi": "Phân quyền theo phòng ban và vai trò",
+          "en": "Access by department and role"
+        },
+        {
+          "vi": "Báo cáo Power BI nhúng, tự làm mới theo lịch",
+          "en": "Embedded Power BI reports that refresh on a schedule"
+        },
+        {
+          "vi": "Thông báo khi dữ liệu mới sẵn sàng",
+          "en": "Notifications when new data is ready"
+        },
+        {
+          "vi": "Gửi yêu cầu báo cáo mới tới người phụ trách",
+          "en": "Requests for new reports sent to the owner"
+        }
+      ],
+      "shortcutsTitle": {
+        "vi": "Phím tắt",
+        "en": "Keyboard shortcuts"
+      },
+      "shortcuts": [
+        {
+          "k": "/",
+          "d": {
+            "vi": "Tìm báo cáo",
+            "en": "Search reports"
+          }
+        },
+        {
+          "k": "?",
+          "d": {
+            "vi": "Mở hộp này",
+            "en": "Open this dialog"
+          }
+        },
+        {
+          "k": "Esc",
+          "d": {
+            "vi": "Xóa ô tìm kiếm, đóng hộp thoại",
+            "en": "Clear search, close dialogs"
+          }
+        },
+        {
+          "k": "← →",
+          "d": {
+            "vi": "Lật trang báo cáo",
+            "en": "Turn report pages"
+          }
+        },
+        {
+          "k": "Home End",
+          "d": {
+            "vi": "Về trang đầu, trang cuối",
+            "en": "Jump to first, last page"
+          }
+        },
+        {
+          "k": "F",
+          "d": {
+            "vi": "Xem toàn màn hình",
+            "en": "Fullscreen"
+          }
+        },
+        {
+          "k": "+ -",
+          "d": {
+            "vi": "Phóng to, thu nhỏ trang",
+            "en": "Zoom the page in, out"
+          }
+        },
+        {
+          "k": "0",
+          "d": {
+            "vi": "Vừa khung",
+            "en": "Fit to window"
+          }
+        }
+      ],
+      "close": {
+        "vi": "Đóng",
+        "en": "Close"
+      }
+    },
+    "page": {
+      "vi": "Trang",
+      "en": "Page"
+    },
+    "pagesNav": {
+      "vi": "Các trang của báo cáo",
+      "en": "Report pages"
+    },
+    "share": {
+      "vi": "Chia sẻ liên kết",
+      "en": "Share link"
+    },
+    "download": {
+      "vi": "Tải trang về",
+      "en": "Download page"
+    },
+    "linkCopied": {
+      "vi": "Đã sao chép liên kết",
+      "en": "Link copied"
+    },
+    "shareTitle": {
+      "vi": "Chia sẻ báo cáo",
+      "en": "Share report"
+    },
+    "notif": {
+      "label": {
+        "vi": "Thông báo",
+        "en": "Notifications"
+      },
+      "markRead": {
+        "vi": "Đánh dấu đã đọc",
+        "en": "Mark all as read"
+      },
+      "none": {
+        "vi": "Không có thông báo mới.",
+        "en": "No new notifications."
+      }
+    },
+    "login": {
+      "brand": "Sightline",
+      "title": {
+        "vi": "Báo cáo vận hành của cả công ty, ở một nơi.",
+        "en": "Every operations report in the company, in one place."
+      },
+      "text": {
+        "vi": "Đây là bản demo của hệ thống báo cáo nội bộ tôi muốn xây dựng cho công ty. Các báo cáo bên trong là mẫu, dữ liệu đã ẩn danh, thể hiện phong cách thiết kế của tôi.",
+        "en": "This is a demo of the internal reporting system I want to build for a company. The reports inside are samples with anonymised data, showing my design style."
+      },
+      "formTitle": {
+        "vi": "Đăng nhập vào Sightline",
+        "en": "Sign in to Sightline"
+      },
+      "formSub": {
+        "vi": "Chọn cách vào cổng báo cáo.",
+        "en": "Choose how to enter the portal."
+      },
+      "microsoft": {
+        "vi": "Đăng nhập bằng Microsoft",
+        "en": "Sign in with Microsoft"
+      },
+      "or": {
+        "vi": "hoặc",
+        "en": "or"
+      },
+      "guest": {
+        "vi": "Vào với tư cách khách",
+        "en": "Enter as guest"
+      }
+    },
+    "library": {
+      "vi": "Thư viện",
+      "en": "Library"
+    },
+    "menu": {
+      "language": {
+        "vi": "Ngôn ngữ",
+        "en": "Language"
+      },
+      "shortcuts": {
+        "vi": "Phím tắt",
+        "en": "Keyboard shortcuts"
+      },
+      "about": {
+        "vi": "Về Sightline",
+        "en": "About Sightline"
+      }
+    },
+    "report": {
+      "info": {
+        "vi": "Về báo cáo này",
+        "en": "About this report"
+      },
+      "questions": {
+        "vi": "Báo cáo này trả lời",
+        "en": "This report answers"
+      },
+      "switch": {
+        "vi": "Chuyển báo cáo",
+        "en": "Switch report"
+      },
+      "dept": {
+        "vi": "Phòng ban",
+        "en": "Department"
+      },
+      "length": {
+        "vi": "Số trang",
+        "en": "Pages"
+      },
+      "zoomIn": {
+        "vi": "Phóng to",
+        "en": "Zoom in"
+      },
+      "zoomOut": {
+        "vi": "Thu nhỏ",
+        "en": "Zoom out"
+      },
+      "zoomReset": {
+        "vi": "Vừa khung",
+        "en": "Fit to window"
+      }
+    }
+  }
 }

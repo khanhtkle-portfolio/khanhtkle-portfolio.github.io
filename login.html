@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sightline</title>
+  <meta name="description" content="Sightline: a demo of an internal operations reporting portal">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a18'/%3E%3Cpath d='M9 22v-6m7 6V10m7 12v-9' stroke='%23f2f1ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+
+  <a class="skip" href="#signin">Skip to sign in</a>
+
+  <!-- Nút ngôn ngữ chỉ có ở trang này; sau khi đăng nhập đổi ngôn ngữ trong menu người dùng -->
+  <div class="login-lang">
+    <div class="lang" role="group">
+      <button type="button" data-lang="vi">VI</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <main class="login">
+    <!-- Bên trái: tên sản phẩm, tiêu đề và một đoạn giới thiệu -->
+    <section class="login-intro">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M9 22v-6m7 6V10m7 12v-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-name">Sightline</span>
+      </div>
+
+      <div class="login-copy">
+        <h1 class="login-title"></h1>
+        <p class="login-text"></p>
+      </div>
+    </section>
+
+    <!-- Bên phải: chọn cách vào -->
+    <section class="login-card" id="signin">
+      <h2 class="form-title"></h2>
+      <p class="form-sub"></p>
+
+      <!-- Tài khoản Microsoft: hiển thị nhưng khóa, chỉ có trong hệ thống thật -->
+      <button type="button" class="sso" disabled aria-disabled="true">
+        <svg class="ms-logo" viewBox="0 0 21 21" aria-hidden="true">
+          <rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+          <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+        </svg>
+        <span class="sso-label"></span>
+      </button>
+
+      <div class="or"><span></span></div>
+
+      <button type="button" class="btn btn-primary btn-wide guest-btn"></button>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
