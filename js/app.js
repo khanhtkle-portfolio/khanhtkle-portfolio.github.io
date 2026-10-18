@@ -328,10 +328,7 @@ function dialog(cls, html, locked = false) {
     let downOutside = false;
     dlg.addEventListener("mousedown", e => { downOutside = outside(e); });
     dlg.addEventListener("click", e => { if (downOutside && outside(e) && !dlg.dataset.locked) dlg.close(); downOutside = false; });
-    // Hộp khóa: Esc và các cách đóng khác không có tác dụng, chỉ nút trong hộp mới đóng được
-    dlg.addEventListener("keydown", e => { if (e.key === "Escape" && dlg.dataset.locked) e.preventDefault(); });
-    dlg.addEventListener("cancel", e => { if (dlg.dataset.locked) e.preventDefault(); });
-    dlg.addEventListener("close", () => { if (dlg.dataset.locked) dlg.showModal(); });
+    // Hộp khóa (lời chào): bấm ra ngoài không đóng; Esc và nút trong hộp vẫn đóng được
     document.body.appendChild(dlg);
   }
   if (locked) dlg.dataset.locked = "1"; else delete dlg.dataset.locked;
@@ -744,7 +741,7 @@ function renderContinue() {
         <span class="resume-label">${t(seen ? P.continue.title : P.continue.featured)}</span>
         <b>${t(r.title)}</b>
         <span>${t(DATA.domains[r.domain].name)}${seen
-          ? `, ${fill(t(P.continue.page), { a: page, b: totalPages(r) }).toLowerCase()}` : ""}</span>
+          ? ` · ${fill(t(P.continue.page), { a: page, b: totalPages(r) })}` : ""}</span>
       </span>
       <span class="btn">${seen ? fill(t(P.continue.openPage), { n: page }) : t(P.continue.open)}</span>
     </a>`;

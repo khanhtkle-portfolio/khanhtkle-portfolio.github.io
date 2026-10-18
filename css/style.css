@@ -306,7 +306,7 @@ body[data-page="login"] { height: 100dvh; overflow: hidden; }
 }
 .login-intro .brand { position: relative; z-index: 1; }
 .login-copy { position: relative; z-index: 1; margin: auto 0; padding-bottom: 12vh; max-width: 560px; }
-.login-title { margin: 0 0 14px; font-size: clamp(32px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; text-wrap: balance; }
+.login-title { white-space: pre-line; margin: 0 0 14px; font-size: clamp(32px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.06; text-wrap: balance; }
 .login-text { margin: 0; max-width: 46ch; color: var(--muted); font-size: 16px; text-wrap: pretty; }
 
 /* Hình trừu tượng: cột biểu đồ thở nhẹ, đường xu hướng vẽ dần, một chấm chạy theo đường */
@@ -1038,6 +1038,5 @@ dialog.dlg ul.contact li { margin: 0; }
 .wc-contact > span { color: var(--muted); font-size: 12.5px; font-weight: 500; }
 .wc-contact .contact { margin-top: 8px; }
 
-.wc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.wc-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
 .wc-top .wc-title { margin: 0; }
-.wc-top .lang { margin-top: 2px; }

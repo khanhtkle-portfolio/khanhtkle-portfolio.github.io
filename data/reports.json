@@ -92,19 +92,19 @@
         "en": "Credit Limits"
       },
       "summary": {
-        "vi": "So sánh kế hoạch và thực hiện về sản lượng, doanh thu, lợi nhuận theo từng pháp nhân, cùng các chỉ số tài chính ngân hàng dùng để xét hạn mức. Hỗ trợ rà soát hạn mức hiện tại có còn phù hợp với kế hoạch.",
-        "en": "Compares plan and actual volume, revenue and profit by legal entity, alongside the financial ratios banks use to assess credit limits. Supports reviews of whether current limits still fit the plan."
+        "vi": "Đánh giá kế hoạch và thực hiện kinh doanh của từng pháp nhân dựa trên các chỉ số tài chính ngân hàng, hỗ trợ rà soát hạn mức tín dụng.",
+        "en": "Evaluates business performance against banking ratios across legal entities to support credit limit reviews."
       },
       "tags": {
         "vi": [
-          "Hạn mức tín dụng",
-          "Dòng thu chi",
+          "Hạn mức ngân hàng",
+          "Chỉ số tài chính",
           "Lãi lỗ phái sinh"
         ],
         "en": [
-          "Credit limits",
-          "Cash flow",
-          "Derivative gains and losses"
+          "Bank limits",
+          "Financial ratios",
+          "Derivative P&L"
         ]
       },
       "questions": {
@@ -131,19 +131,19 @@
         "en": "USD Supply & Demand"
       },
       "summary": {
-        "vi": "Đối chiếu nhu cầu thanh toán USD với lượng USD đã mua, kèm tỷ giá mua bình quân và lãi lỗ so với tỷ giá giao ngay. Cho biết phần nhu cầu còn chưa được đáp ứng.",
-        "en": "Matches USD payment needs against USD purchased and shows the average purchase rate and the gain or loss versus the spot rate. Shows how much of the need is still uncovered."
+        "vi": "Đối chiếu nhu cầu thanh toán ngoại tệ với lượng USD đã mua thực tế, tính toán tỷ giá bình quân và xác định phần nhu cầu còn thiếu.",
+        "en": "Matches foreign currency payment needs against executed USD purchases, calculating average rates and uncovered gaps."
       },
       "tags": {
         "vi": [
-          "Ngoại hối",
-          "Tỷ giá giao ngay",
-          "Ngân quỹ"
+          "Thanh toán USD",
+          "Trạng thái ngoại tệ",
+          "Tỷ giá giao ngay"
         ],
         "en": [
-          "Foreign exchange",
-          "Spot rate",
-          "Treasury"
+          "USD payments",
+          "FX exposure",
+          "Spot rate comparison"
         ]
       },
       "questions": {
@@ -170,19 +170,19 @@
         "en": "Accounts Receivable"
       },
       "summary": {
-        "vi": "Theo dõi nợ quá hạn, tuổi nợ, lãi chiếm dụng vốn, tiến độ thu hồi và số ngày thanh toán thực tế so với điều khoản. Giúp ưu tiên các khoản cần đòi.",
-        "en": "Shows overdue balances, debt aging, the financing cost of late payments, collection progress and actual payment days against terms. Helps prioritise collection follow-up."
+        "vi": "Giám sát chi tiết các khoản nợ quá hạn, tuổi nợ và tiến độ thu hồi theo từng hạn mức thanh toán để định hướng xử lý.",
+        "en": "Monitors overdue balances, debt aging, and collection milestones against contractual terms to prioritize follow-ups."
       },
       "tags": {
         "vi": [
-          "Công nợ phải thu",
-          "Tuổi nợ",
-          "Thu hồi nợ"
+          "Nợ quá hạn",
+          "Tuổi nợ khách hàng",
+          "Tiến độ thu hồi"
         ],
         "en": [
-          "Receivables",
-          "Aging",
-          "Collections"
+          "Overdue debt",
+          "Customer aging",
+          "Collection tracking"
         ]
       },
       "questions": {
@@ -209,19 +209,19 @@
         "en": "Cargo Insurance"
       },
       "summary": {
-        "vi": "Theo dõi tiến độ cấp chứng nhận bảo hiểm cho lô hàng nhập khẩu, phí bảo hiểm so với tiền bồi thường, và tiến độ hồ sơ bồi thường theo nhân viên. Giúp phát hiện lô hàng chưa có chứng nhận và hồ sơ cần xử lý.",
-        "en": "Tracks insurance certificate issuance for import shipments, premiums against claims paid, and claim-file progress by staff member. Helps spot shipments without a certificate and claims that need follow-up."
+        "vi": "Quản lý tình trạng cấp chứng nhận bảo hiểm cho lô hàng nhập khẩu, đối chiếu phí bảo hiểm với tiền bồi thường và tiến độ hồ sơ.",
+        "en": "Manages certificate issuance for import shipments, compares insurance premiums to claims paid, and tracks file progress."
       },
       "tags": {
         "vi": [
-          "Bảo hiểm hàng hóa",
-          "Nhập khẩu",
+          "Chứng nhận bảo hiểm",
+          "Hàng nhập khẩu",
           "Hồ sơ bồi thường"
         ],
         "en": [
-          "Cargo insurance",
-          "Imports",
-          "Claims"
+          "Insurance certificates",
+          "Import shipments",
+          "Claim files"
         ]
       },
       "questions": {
@@ -341,8 +341,8 @@
         "en": "Open report"
       },
       "openPage": {
-        "vi": "Tiếp tục xem",
-        "en": "Continue viewing"
+        "vi": "Mở lại",
+        "en": "Re-open"
       }
     },
     "activity": {
@@ -538,7 +538,7 @@
           },
           "t": {
             "vi": "Các trang báo cáo hiện được minh họa dạng hình ảnh tối ưu, chưa hỗ trợ thao tác lọc (filter) hoặc khoan sâu (drill-down) dữ liệu trực tiếp.",
-            "en": "Report pages are currently shown as optimised images, so filtering and drill-down on live data are not supported yet."
+            "en": "Report pages are currently shown as optimized images, so filtering and drill-down on live data are not supported yet."
           }
         }
       ],
@@ -612,12 +612,12 @@
     "login": {
       "brand": "Sightline",
       "title": {
-        "vi": "Đúng báo cáo, đúng phòng ban, mở là thấy.",
-        "en": "The right report, in the right department, one click away."
+        "vi": "Mọi báo cáo,\ntập trung tại một nơi.",
+        "en": "All your reports, in one place."
       },
       "text": {
-        "vi": "Sightline xếp báo cáo Power BI theo phòng ban. Mỗi báo cáo nói rõ nó trả lời câu hỏi nào, để bạn mở đúng báo cáo mà không phải hỏi lại đồng nghiệp.",
-        "en": "Sightline organises Power BI reports by department. Each one says which question it answers, so you open the right report without asking around."
+        "vi": "Sightline tập hợp tất cả các báo cáo doanh nghiệp vào một cổng thông tin, giúp nhân viên dễ dàng tìm kiếm, truy cập và quản lý báo cáo theo nhu cầu.",
+        "en": "Sightline consolidates all corporate reports into a single portal, making it easy for employees to search, access, and manage reports as needed."
       },
       "formTitle": {
         "vi": "Đăng nhập vào Sightline",
@@ -971,8 +971,8 @@
         "en": "Get in touch"
       },
       "text": {
-        "vi": "Bạn muốn trao đổi thêm về Sightline hay các báo cáo? Hãy liên hệ với mình qua:",
-        "en": "Want to talk more about Sightline or the reports? Reach me at:"
+        "vi": "Bạn muốn tìm hiểu thêm về Sightline hoặc trao đổi về cơ hội hợp tác? Liên hệ với mình qua:",
+        "en": "Want to learn more about Sightline or talk about working together? Get in touch:"
       }
     }
   }
