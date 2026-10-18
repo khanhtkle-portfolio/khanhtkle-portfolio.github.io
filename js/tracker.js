@@ -55,6 +55,7 @@
   function flush() {
     clearTimeout(timer);
     if (!CFG.trackUrl || !queue.length) return;
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;   // chạy thử trên máy: không gửi
     const batch = queue.slice();
     const body = JSON.stringify({ key: CFG.trackKey || "", events: batch });
     let ok = false;
