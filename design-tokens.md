@@ -63,32 +63,26 @@ Rule: the UI is monochrome warm gray. Color appears only in content, never in ch
 
 ## Applied in this site
 
-- Product name: **Sightline**. `css/style.css` defines these tokens as `:root` variables. No dark theme, no banner above the top bar.
-- Flow: `login.html` (one headline, one paragraph, three sample reports, guest entry; Microsoft sign-in shown
-  greyed out and disabled) → `index.html` → `report.html`. Inner pages redirect to login until a guest session exists.
-- The VI | EN switch exists only on the login page. After sign-in it lives in the user menu, with shortcuts,
-  glossary, about and sign out.
-- Top bar on inner pages: brand mark + name + tagline (home) or back chevron + report title (report page),
-  notification bell with unread count, user chip.
-- Home left rail: search, library (all, pinned, recent) and departments, each with an icon, count and its
-  reports listed underneath as direct links; "Request a report" pinned to the bottom.
-- Cards show only the department, page count, title and full summary.
-- Report page: does not scroll. Corner tools: share link (paperclip), download, fullscreen. Pager on its own
-  surface: 112×70px thumbnails scrolling horizontally, page counter on the right at the same height.
-- Added tokens: `--star`, `--danger` / `--danger-bg`, `--pop-shadow` (warm tinted, menus and dialogs only).
-- Icons: Phosphor Icons (regular weight, MIT licence, https://phosphoricons.com), copied as inline SVG into `ICONS` in `js/app.js`. The back chevron and the Sightline mark are custom.
+- Product name: **Sightline**. Tokens live in `css/style.css` as `:root` variables. No dark theme, no banner.
+- `--ctl: 37px` is the one size for every square control in the top bar: notifications, quick find, tools, avatar.
+  The user is only an avatar box; the name, role, language, help and sign out are in its menu.
+- Flow: `login.html` → `index.html` → `report.html`. A sample session lasts 8 hours and is stored in
+  localStorage, so opening a report in a new tab (Ctrl+click) stays signed in.
+- Login: headline and paragraph vertically centred on the left, an animated abstract chart (breathing bars, a
+  trend line that draws itself, a dot that follows it) at the bottom. Both entry buttons share one mould
+  (44px, 15px/500, centred); Microsoft is greyed out and disabled.
+- Home: brand mark + name + tagline, quick find, bell, avatar. Left rail with search, library, saved pages and
+  departments (each with its reports). Cards show department, page count, title and the full summary.
+- Report page: top bar in three zones. Left: back box (same spot as the brand mark), title, department.
+  Centre: previous, a typeable page box, next. Right: zoom, save page, notes, a "more" menu (share link,
+  download, fullscreen, about this report, report a data issue), then quick find, bell, avatar.
+  The thumbnail pager is hidden for now (`hidden` on `.pager` in `report.html`), so the page fills the window.
+- Quick find: Ctrl K (⌘ K on Mac) searches reports, saved pages and commands.
+- Images: `reports/<report>/s/` (640px) and `m/` (1600px) are pre-scaled with a Lanczos filter and light
+  sharpening; the 2400px originals are used when zoomed, on high-density screens and for downloads.
+- Icons: Phosphor Icons (regular, MIT, https://phosphoricons.com), inline in `ICONS` in `js/app.js`.
 
 ## Text case
 
-- Sentence case for every UI string: headings, buttons, menu items, labels ("Request a report", "Last viewed").
-- Capitals only where they are part of the word: the product name Sightline, language codes VI and EN,
-  acronyms and department names that are proper nouns.
-- No all-caps labels and no Title Case headings.
-
-## Report page additions
-
-- Top bar mirrors the home page: a 28px box at the same x position as the Sightline mark (here it is the back
-  chevron), then the report title in the same weight, a divider and the department name. The title opens a
-  list to switch reports. An info button opens "About this report" (summary and the questions it answers).
-- Zoom 100–300% with the corner controls, the + - 0 keys or a double click; drag to pan. The page itself never scrolls.
-- Pin uses the push-pin icon everywhere (outline = not pinned, filled = pinned).
+- Sentence case for every UI string. Capitals only for proper nouns (Sightline), language codes (VI, EN)
+  and acronyms. No all-caps labels, no Title Case headings.

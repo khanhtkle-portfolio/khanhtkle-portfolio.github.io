@@ -3,17 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Sightline">
+  <meta property="og:description" content="Sightline: view a Power BI report page by page">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f2f1ee">
+  <meta name="color-scheme" content="light">
   <title>Report</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Khanh Le">
+  <meta name="copyright" content="© 2026 Khanh Le">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a18'/%3E%3Cpath d='M9 22v-6m7 6V10m7 12v-9' stroke='%23f2f1ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-  <!-- Chưa đăng nhập thì chuyển về trang đăng nhập -->
+  <!-- Chưa đăng nhập (hoặc phiên đã hết hạn) thì chuyển về trang đăng nhập -->
   <script>
-    try { if (!sessionStorage.getItem("auth")) location.replace("login.html"); } catch (_) {}
+    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login.html"); } catch (_) {}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Be+Vietnam+Pro:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -21,66 +29,91 @@
 
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- Thanh trên: cùng nhịp với trang chủ. Ô vuông bên trái là nút về trang chủ (vị trí của biểu tượng Sightline) -->
-  <header class="topbar">
-    <a class="back" href="index.html">
-      <svg viewBox="0 0 6 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.25 .75 .75 6l4.5 5.25"/></svg>
-    </a>
+  <!-- Thanh trên chia ba vùng: ngữ cảnh bên trái, điều khiển trang ở giữa, công cụ bên phải.
+       Chuông và avatar nằm đúng chỗ như trang chủ. -->
+  <header class="topbar topbar-viewer">
+    <div class="tb-left">
+      <a class="back" href="index.html">
+        <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>
+      </a>
+      <div class="hd">
+        <h1 class="topbar-title"></h1>
+        <span class="topbar-dept"></span>
+      </div>
+    </div>
 
-    <!-- Tên báo cáo cũng là nút chuyển nhanh sang báo cáo khác -->
-    <div class="pop switcher">
-      <h1 class="title-h">
-        <button class="title-btn" type="button" aria-expanded="false" aria-haspopup="true">
-          <span class="topbar-title"></span>
-          <svg class="ico caret" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"></svg>
+    <div class="tb-center">
+      <div class="pgctl" role="group">
+        <button class="pg-prev" type="button"></button>
+        <span class="pg-field">
+          <input class="pg-input" name="page" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
+          <span class="pg-total"></span>
+        </span>
+        <button class="pg-next" type="button"></button>
+      </div>
+    </div>
+
+    <div class="tb-right">
+      <div class="zoom" role="group">
+        <button class="zoom-out" type="button"></button>
+        <button class="zoom-val" type="button"></button>
+        <button class="zoom-in" type="button"></button>
+      </div>
+
+      <div class="tb-acts" role="group">
+        <button class="icon-btn act-btn" type="button" data-act="share"></button>
+        <button class="icon-btn act-btn" type="button" data-act="download"></button>
+        <button class="icon-btn act-btn" type="button" data-act="fs"></button>
+      </div>
+
+      <div class="pop note">
+        <button class="icon-btn note-btn" type="button" aria-expanded="false" aria-haspopup="true"></button>
+        <div class="pop-menu note-menu" hidden></div>
+      </div>
+
+      <div class="pop more">
+        <button class="icon-btn more-btn" type="button" aria-expanded="false" aria-haspopup="true"></button>
+        <div class="pop-menu more-menu" hidden></div>
+      </div>
+
+      <span class="tb-sep" aria-hidden="true"></span>
+
+      <button class="icon-btn palette-btn" type="button"></button>
+
+      <div class="pop notif">
+        <button class="icon-btn notif-btn" type="button" aria-expanded="false" aria-haspopup="true">
+          <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"/></svg>
+          <span class="badge" hidden></span>
         </button>
-      </h1>
-      <div class="pop-menu switch-menu" hidden></div>
-    </div>
-    <span class="topbar-tagline"></span>
+        <div class="pop-menu notif-menu" hidden></div>
+      </div>
 
-    <div class="pop info">
-      <button class="icon-btn info-btn" type="button" aria-expanded="false" aria-haspopup="true"></button>
-      <div class="pop-menu info-menu" hidden></div>
-    </div>
-
-    <div class="pop notif">
-      <button class="icon-btn notif-btn" type="button" aria-expanded="false" aria-haspopup="true">
-        <svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"/></svg>
-        <span class="badge" hidden></span>
-      </button>
-      <div class="pop-menu notif-menu" hidden></div>
-    </div>
-
-    <div class="pop user">
-      <button class="user-btn" type="button" aria-expanded="false" aria-haspopup="true">
-        <span class="avatar"></span>
-        <span class="user-text"><b class="user-name"></b><span class="user-role"></span></span>
-      </button>
-      <div class="pop-menu user-menu" hidden></div>
+      <div class="pop user">
+        <button class="user-btn" type="button" aria-expanded="false" aria-haspopup="true">
+          <span class="avatar"></span>
+        </button>
+        <div class="pop-menu user-menu" hidden></div>
+      </div>
     </div>
   </header>
 
-  <!-- Trang xem: không cuộn. Ảnh báo cáo chiếm hết chỗ, thanh trang nằm dưới cùng -->
+  <!-- Trang xem: không cuộn. Ảnh báo cáo chiếm gần hết màn hình -->
   <main class="viewer" id="main">
     <div class="stage">
-      <img src="" alt="" draggable="false">
+      <img src="" alt="" width="3200" height="2000" decoding="async" draggable="false">
+      <div class="stage-msg" hidden>
+        <p class="empty-title"></p>
+        <p class="empty-text"></p>
+        <a class="btn" href="index.html" hidden></a>
+      </div>
       <button class="nav prev" type="button"><span>‹</span></button>
       <button class="nav next" type="button"><span>›</span></button>
-      <div class="stage-tools">
-        <button class="tool tool-share" type="button"></button>
-        <button class="tool tool-download" type="button"></button>
-        <button class="tool tool-fs" type="button"></button>
-      </div>
-      <div class="zoom" role="group">
-        <button class="tool zoom-out" type="button"></button>
-        <button class="zoom-val" type="button"></button>
-        <button class="tool zoom-in" type="button"></button>
-      </div>
     </div>
 
-    <!-- Thanh trang có nền riêng: ảnh nhỏ cuộn ngang bên trái, bộ đếm trang bên phải -->
-    <nav class="pager">
+    <p class="watermark" aria-hidden="true">© 2026 <b>Khanh Le</b></p>
+
+    <!-- Thanh ảnh nhỏ: tạm ẩn để dành chỗ cho báo cáo. Bỏ thuộc tính hidden là hiện lại. -->
+    <nav class="pager" hidden>
       <div class="strip"></div>
       <div class="counter"><span class="counter-label"></span><b class="counter-num"></b></div>
     </nav>
@@ -93,6 +126,9 @@
           async src="//gc.zgo.at/count.js"></script>
   -->
 
+  <script src="js/config.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/guard.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

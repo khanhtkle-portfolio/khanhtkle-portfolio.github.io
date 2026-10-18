@@ -3,19 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Sightline">
+  <meta property="og:description" content="Sightline: an internal operations reporting portal, organised by department">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f2f1ee">
+  <meta name="color-scheme" content="light">
   <title>Sightline</title>
-  <meta name="description" content="Sightline: a demo of an internal operations reporting portal, organised by department">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Khanh Le">
+  <meta name="copyright" content="© 2026 Khanh Le">
+  <meta name="description" content="Sightline: an internal operations reporting portal, organised by department">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a1a18'/%3E%3Cpath d='M9 22v-6m7 6V10m7 12v-9' stroke='%23f2f1ee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 
-  <!-- Chưa đăng nhập thì chuyển về trang đăng nhập -->
+  <!-- Chưa đăng nhập (hoặc phiên đã hết hạn) thì chuyển về trang đăng nhập -->
   <script>
-    try { if (!sessionStorage.getItem("auth")) location.replace("login.html"); } catch (_) {}
+    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login.html"); } catch (_) {}
   </script>
 
   <!-- Phông chữ Inter (có bộ ký tự tiếng Việt) từ Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Be+Vietnam+Pro:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -28,9 +36,11 @@
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 32 32"><path d="M9 22v-6m7 6V10m7 12v-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
       </span>
-      <h1 class="topbar-title">Sightline</h1>
+      <h1 class="topbar-title" translate="no">Sightline</h1>
     </a>
     <span class="topbar-tagline"></span>
+
+    <button class="icon-btn palette-btn" type="button"></button>
 
     <div class="pop notif">
       <button class="icon-btn notif-btn" type="button" aria-expanded="false" aria-haspopup="true">
@@ -43,7 +53,6 @@
     <div class="pop user">
       <button class="user-btn" type="button" aria-expanded="false" aria-haspopup="true">
         <span class="avatar"></span>
-        <span class="user-text"><b class="user-name"></b><span class="user-role"></span></span>
       </button>
       <div class="pop-menu user-menu" hidden></div>
     </div>
@@ -53,7 +62,7 @@
     <aside class="side">
       <label class="search">
         <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg>
-        <input type="search" autocomplete="off">
+        <input type="search" name="q" autocomplete="off" spellcheck="false">
         <kbd>/</kbd>
       </label>
       <nav class="nav-list"></nav>
@@ -67,12 +76,16 @@
         <span class="count"></span>
         <label class="sort">
           <span class="sort-label"></span>
-          <select></select>
+          <select name="sort"></select>
         </label>
       </div>
       <!-- Lưới thẻ: JS đọc data/reports.json rồi đổ vào đây -->
       <div class="grid"></div>
-      <p class="empty" hidden></p>
+      <div class="empty" hidden>
+        <p class="empty-title"></p>
+        <p class="empty-text"></p>
+        <button type="button" class="btn empty-btn" hidden></button>
+      </div>
     </main>
   </div>
 
@@ -81,6 +94,10 @@
           async src="//gc.zgo.at/count.js"></script>
   -->
 
+  <script src="js/config.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/guard.js"></script>
   <script src="js/app.js"></script>
+  <div class="watermark" aria-hidden="true">© 2026 <b>Khanh Le</b></div>
 </body>
 </html>
