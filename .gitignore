@@ -1,0 +1,12 @@
+# Không đưa lên repo công khai: chỉ giữ các file cần cho trang khanhtkle.github.io
+# (index.html, login.html, report.html, css/, js/, data/, reports/, robots.txt)
+.agents/
+.claude/
+.vscode/
+backend/
+state/
+skills-lock.json
+design-tokens.md
+README.md
+CLAUDE.md
+.playwright-mcp/
