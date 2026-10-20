@@ -11,6 +11,9 @@
 
 /* ---------- 1. Ngôn ngữ, phiên, lưu trữ ---------- */
 
+// Điện thoại cầm dọc: trang xem báo cáo xoay 90° để bố cục luôn nằm ngang (khớp với CSS cuối style.css)
+const ROTATED_Q = "(max-width: 720px) and (orientation: portrait)";
+
 // Đọc/ghi localStorage an toàn (trình duyệt chặn lưu trữ thì bỏ qua)
 const store = {
   get(key, fallback) {
@@ -883,7 +886,9 @@ function renderViewer() {
 
   document.title = `${t(report.title)} — ${DATA.site.title}`;
   setText(".topbar-title", t(report.title));
-  setText(".topbar-dept", t(DATA.domains[report.domain].name));
+  const dom = DATA.domains[report.domain];
+  const deptEl = document.querySelector(".topbar-dept");
+  if (deptEl) deptEl.innerHTML = `${ico(dom.icon || "grid")}${esc(t(dom.name))}`;
   setText(".counter-label", t(DATA.portal.page));
   document.querySelector(".nav.prev").setAttribute("aria-label", t(DATA.ui.prev));
   document.querySelector(".nav.next").setAttribute("aria-label", t(DATA.ui.next));
@@ -922,8 +927,15 @@ function renderPager() {
     if (e.key === "Enter") { show(parseInt(input.value, 10) || VIEW.page); input.blur(); }
     if (e.key === "Escape") { input.value = VIEW.page; input.blur(); e.stopPropagation(); }
   };
-  input.onblur = () => { input.value = VIEW.page; };
+  input.onblur = () => { input.value = VIEW.page; sizePageInput(); };
+  input.oninput = sizePageInput;
   setText(".pg-total", `/ ${totalPages(VIEW.report)}`);
+}
+
+// Ô số trang rộng đúng bằng số chữ số, để "1 / 5" nằm giữa khung thay vì lệch trái
+function sizePageInput() {
+  const input = document.querySelector(".pg-input");
+  if (input) input.style.width = `${Math.max(1, input.value.length)}ch`;
 }
 
 // Nút phóng to trên thanh trên
@@ -943,7 +955,15 @@ function renderZoomControls() {
 function renderMenus() {
   const R = DATA.portal.report;
   const more = document.querySelector(".more-btn");
-  more.innerHTML = ico("dots");
+  more.innerHTML = `${ico("dots")}<span class="dot" hidden></span>`;
+
+  // Nút "Xem toàn màn hình ngang": chỉ hiện trên máy cảm ứng đang để dọc (CSS) và khi trình duyệt có toàn màn hình
+  const land = document.querySelector(".land-btn");
+  if (land && document.fullscreenEnabled) {
+    land.innerHTML = `${ico("fs")}${t(R.landscape)}`;
+    land.hidden = false;
+    land.onclick = toggleFullscreen;
+  }
   more.setAttribute("aria-label", t(R.more));
   more.title = t(R.more);
   more.onclick = e => { e.stopPropagation(); togglePop(".more"); };
@@ -961,17 +981,23 @@ function renderMenus() {
     b.title = a.key ? `${a.label} (${a.key})` : a.label;
   });
   const menu = document.querySelector(".more-menu");
+  // Khi thanh trên hẹp, nút phóng to và ba nút chia sẻ/tải về/toàn màn hình thu vào menu này (CSS ẩn hiện theo độ rộng)
   menu.innerHTML = `
+    <button type="button" class="menu-item mi-zoom" data-act="zin">${ico("zoomIn")}${t(R.zoomIn)}<kbd>+</kbd></button>
+    <button type="button" class="menu-item mi-zoom" data-act="zout">${ico("zoomOut")}${t(R.zoomOut)}<kbd>-</kbd></button>
+    <button type="button" class="menu-item mi-zoom" data-act="zreset">${ico("search")}${t(R.zoomReset)}<kbd class="mi-zoom-val">100%</kbd></button>
+    <div class="menu-sep mi-zoom"></div>
+    <button type="button" class="menu-item mi-acts" data-act="share">${ico(actions.share.icon)}${actions.share.label}</button>
+    <button type="button" class="menu-item mi-acts" data-act="download">${ico(actions.download.icon)}${actions.download.label}</button>
+    <button type="button" class="menu-item mi-acts mi-fs" data-act="fs">${ico(actions.fs.icon)}${actions.fs.label}<kbd>F</kbd></button>
+    <div class="menu-sep mi-acts"></div>
+    <button type="button" class="menu-item" data-act="note">${ico("note")}${t(R.note)}<span class="mi-dot" hidden></span></button>
     <button type="button" class="menu-item" data-act="about">${ico("info")}${t(R.aboutReport)}</button>
     <button type="button" class="menu-item" data-act="issue">${ico("flag")}${t(R.issue)}</button>`;
-  const acts = { share: sharePage, download: downloadPage, fs: toggleFullscreen, about: openReportInfo, issue: openIssue };
+  const acts = { share: sharePage, download: downloadPage, fs: toggleFullscreen, about: openReportInfo, issue: openIssue,
+    note: () => { setPop(".note"); setTimeout(() => document.querySelector(".note-text")?.focus(), 0); },
+    zin: () => setZoom(ZOOM.z + 0.5), zout: () => setZoom(ZOOM.z - 0.5), zreset: () => setZoom(1) };
   document.querySelectorAll("[data-act]").forEach(b => { b.onclick = () => { setPop(null); acts[b.dataset.act](); }; });
-
-  const note = document.querySelector(".note-btn");
-  note.onclick = e => {
-    e.stopPropagation();
-    if (togglePop(".note")) setTimeout(() => document.querySelector(".note-text")?.focus(), 0);
-  };
 }
 
 // Ghi chú riêng cho từng trang, tự lưu khi gõ
@@ -979,10 +1005,9 @@ function renderNote() {
   const R = DATA.portal.report;
   const key = `${VIEW.report.id}:${VIEW.page}`;
   const notes = getNotes();
-  const btn = document.querySelector(".note-btn");
-  btn.innerHTML = `${ico("note")}<span class="dot" ${notes[key] ? "" : "hidden"}></span>`;
-  btn.setAttribute("aria-label", t(R.note));
-  btn.title = t(R.note);
+  // Chấm báo "trang này có ghi chú" hiện ở nút ba chấm và ở mục Ghi chú trong menu
+  const markNote = has => document.querySelectorAll(".more-btn .dot, .mi-dot").forEach(d => { d.hidden = !has; });
+  markNote(!!notes[key]);
 
   const menu = document.querySelector(".note-menu");
   menu.innerHTML = `
@@ -999,7 +1024,7 @@ function renderNote() {
       const v = ta.value.trim();
       if (v) all[key] = ta.value; else delete all[key];
       store.set("notes", all);
-      btn.querySelector(".dot").hidden = !v;
+      markNote(!!v);
       menu.querySelector(".note-status").textContent = t(R.noteSaved);
     }, 400);
   };
@@ -1092,8 +1117,12 @@ function showStageMsg(title, text, withLink) {
 }
 
 function toggleFullscreen() {
-  if (document.fullscreenElement) document.exitFullscreen();
-  else document.querySelector(".stage").requestFullscreen?.();
+  if (document.fullscreenElement) { screen.orientation?.unlock?.(); document.exitFullscreen(); return; }
+  const req = document.querySelector(".stage").requestFullscreen?.();
+  // Điện thoại: báo cáo nằm ngang nên xoay màn hình ngang khi vào toàn màn hình (Android Chrome; iOS không hỗ trợ)
+  if (req && matchMedia("(pointer: coarse)").matches && screen.orientation?.lock) {
+    req.then(() => screen.orientation.lock("landscape")).catch(() => {});
+  }
 }
 
 // Phóng to: nút +/-, phím + - 0, bấm đúp; kéo để dịch chuyển khi đang phóng. Không có thanh cuộn.
@@ -1108,9 +1137,9 @@ function applyImage() {
 }
 
 function clampPan() {
-  const r = document.querySelector(".stage").getBoundingClientRect();
-  const mx = (ZOOM.z - 1) * r.width / 2;
-  const my = (ZOOM.z - 1) * r.height / 2;
+  const stage = document.querySelector(".stage");
+  const mx = (ZOOM.z - 1) * stage.offsetWidth / 2;
+  const my = (ZOOM.z - 1) * stage.offsetHeight / 2;
   ZOOM.x = Math.min(mx, Math.max(-mx, ZOOM.x));
   ZOOM.y = Math.min(my, Math.max(-my, ZOOM.y));
 }
@@ -1120,6 +1149,7 @@ function applyZoom() {
     ZOOM.z === 1 ? "" : `translate(${ZOOM.x}px, ${ZOOM.y}px) scale(${ZOOM.z})`;
   stage.classList.toggle("is-zoomed", ZOOM.z > 1);
   setText(".zoom-val", `${Math.round(ZOOM.z * 100)}%`);
+  setText(".mi-zoom-val", `${Math.round(ZOOM.z * 100)}%`);
   const zo = document.querySelector(".zoom-out"), zi = document.querySelector(".zoom-in");
   if (zo) zo.disabled = ZOOM.z <= 1;
   if (zi) zi.disabled = ZOOM.z >= 3;
@@ -1149,6 +1179,7 @@ function show(n) {
 
   // Điều khiển trang, nút lưu, ghi chú, thanh ảnh nhỏ
   document.querySelector(".pg-input").value = n;
+  sizePageInput();
   document.querySelector(".pg-prev").disabled = n === 1;
   document.querySelector(".pg-next").disabled = n === total;
   document.querySelector(".counter-num").textContent = `${n} / ${total}`;
@@ -1203,8 +1234,10 @@ function bindViewerControls() {
   });
   stage.addEventListener("pointermove", e => {
     if (!drag) return;
-    ZOOM.x = drag.ox + e.clientX - drag.x;
-    ZOOM.y = drag.oy + e.clientY - drag.y;
+    // Trang xoay 90° trên điện thoại dọc: trục ngang của báo cáo là trục dọc của màn hình
+    const rot = matchMedia(ROTATED_Q).matches;
+    ZOOM.x = drag.ox + (rot ? e.clientY - drag.y : e.clientX - drag.x);
+    ZOOM.y = drag.oy + (rot ? drag.x - e.clientX : e.clientY - drag.y);
     clampPan();
     applyZoom();
   });
@@ -1217,10 +1250,11 @@ function bindViewerControls() {
 
   // Vuốt trên màn hình cảm ứng (chỉ khi chưa phóng)
   let startX = null;
-  stage.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
+  const swipeAxis = t => matchMedia(ROTATED_Q).matches ? t.clientY : t.clientX;
+  stage.addEventListener("touchstart", e => { startX = swipeAxis(e.touches[0]); }, { passive: true });
   stage.addEventListener("touchend", e => {
     if (startX === null || !VIEW || ZOOM.z > 1) return;
-    const dx = e.changedTouches[0].clientX - startX;
+    const dx = swipeAxis(e.changedTouches[0]) - startX;
     if (dx < -50) show(VIEW.page + 1);
     if (dx >  50) show(VIEW.page - 1);
     startX = null;

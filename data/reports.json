@@ -436,8 +436,8 @@
         "en": "About Sightline"
       },
       "whatText": {
-        "vi": "Sightline là mô hình định hình kiến trúc cho Cổng thông tin báo cáo nội bộ mà tôi hướng tới xây dựng cho doanh nghiệp: Một điểm đến duy nhất giúp nhân viên đăng nhập, tra cứu và theo dõi các báo cáo Power BI theo từng phòng ban.",
-        "en": "Sightline is an architectural concept for the internal reporting portal I aim to build for a company: a single destination where employees sign in, look up and follow Power BI reports by department."
+        "vi": "Sightline là mô hình cổng thông tin nội bộ được thiết kế nhằm tập trung các báo cáo Power BI trên một nền tảng thống nhất, giúp nhân viên dễ dàng tìm kiếm, truy cập và theo dõi báo cáo theo từng phòng ban.",
+        "en": "Sightline is a conceptual internal portal designed to centralize Power BI reports on a unified platform, enabling employees to easily find, access, and monitor reports across departments."
       },
       "shortcutsTitle": {
         "vi": "Phím tắt",
@@ -795,6 +795,10 @@
         "vi": "Toàn màn hình",
         "en": "Full screen"
       },
+      "landscape": {
+        "vi": "Xem toàn màn hình ngang",
+        "en": "View in landscape"
+      },
       "details": {
         "vi": "Chi tiết",
         "en": "Details"
@@ -942,20 +946,20 @@
     },
     "welcome": {
       "title": {
-        "vi": "Xin chào, mình là Khanh Lê",
-        "en": "Hello, I'm Khanh Le."
+        "vi": "Xin chào, mình là Khanh",
+        "en": "Hi, I'm Khanh"
       },
       "greet": {
-        "vi": "Cảm ơn bạn đã dành thời gian tìm hiểu portfolio của mình.",
-        "en": "Thank you for taking the time to explore my portfolio!"
+        "vi": "Chào mừng bạn đến với Sightline!",
+        "en": "Welcome to Sightline!"
       },
       "body": {
-        "vi": "Sightline là một cổng thông tin nội bộ, tập trung tất cả các báo cáo Power BI do đội ngũ phân tích dữ liệu xây dựng, giúp người dùng dễ dàng tìm kiếm, truy cập và quản lý báo cáo theo nhu cầu.",
-        "en": "Sightline is an internal portal that centralizes all Power BI dashboards developed by the data team, allowing users to effortlessly search, access, and leverage insights tailored to their operational needs."
+        "vi": "Sightline là cổng thông tin mô phỏng hệ thống báo cáo Power BI trong doanh nghiệp, nơi mình giới thiệu các giải pháp báo cáo được phát triển từ kinh nghiệm làm việc thực tế.",
+        "en": "Sightline is a simulated enterprise Power BI reporting portal showcasing reporting solutions inspired by my real-world work experience."
       },
       "invite": {
-        "vi": "Mời bạn trải nghiệm giao diện Sightline và tìm hiểu các giải pháp báo cáo mình đã xây dựng để hỗ trợ giải quyết các bài toán nghiệp vụ thực tế cho các phòng ban trong doanh nghiệp.",
-        "en": "Feel free to explore the Sightline interface and discover how these analytics solutions solve real-world business challenges across different departments."
+        "vi": "Mời bạn trải nghiệm giao diện Sightline và khám phá cách mình ứng dụng Power BI để giải quyết các bài toán nghiệp vụ và hỗ trợ hoạt động của các phòng ban.",
+        "en": "Feel free to explore Sightline and discover how I use Power BI to address business challenges and support different departments across an organization."
       },
       "cta": {
         "vi": "Trải nghiệm Sightline",
