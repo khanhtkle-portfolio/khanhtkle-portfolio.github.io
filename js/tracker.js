@@ -16,6 +16,18 @@
   const uid = () => (crypto.randomUUID ? crypto.randomUUID()
     : Date.now().toString(36) + Math.random().toString(36).slice(2, 10));
 
+  // Địa chỉ không có đuôi .html; số liệu vẫn ghi tên trang kiểu cũ (login.html, index.html) để khớp dữ liệu trước đó.
+  const pageName = () => {
+    const n = location.pathname.split("/").pop() || "index";
+    return /\.html$/.test(n) ? n : n + ".html";
+  };
+  if (/\.html$/.test(location.pathname)) {
+    try {
+      const clean = location.pathname.replace(/index\.html$/, "").replace(/\.html$/, "");
+      history.replaceState(null, "", (clean || "/") + location.search + location.hash);
+    } catch (_) {}
+  }
+
   let visitor = ls.get("visitor", null);
   if (!visitor || !visitor.id) { visitor = { id: uid(), name: "" }; ls.set("visitor", visitor); }
   let sid = ls.get("sid", null);
@@ -43,7 +55,7 @@
     if (type === "login" || type === "page_view") Object.assign(p, context());
     queue.push({
       t: new Date().toISOString(), type, v: visitor.id, name: visitor.name, s: sid,
-      path: location.pathname.split("/").pop() || "index.html", p,
+      path: pageName(), p,
     });
     if (queue.length > MAX_QUEUE) queue = queue.slice(-MAX_QUEUE);
     ls.set("trackQueue", queue);

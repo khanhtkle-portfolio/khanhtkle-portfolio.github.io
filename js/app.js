@@ -45,7 +45,7 @@ function signOut() {
   window.Tracker?.endSession();
   session.end();
   store.remove("notifSeen");
-  location.href = "login.html";
+  location.href = "login";
 }
 
 // Thứ tự ưu tiên: người xem đã chọn trước đó > ngôn ngữ hệ thống > tiếng Anh
@@ -288,7 +288,7 @@ function renderNotifs() {
       <button type="button" class="notif-read" ${seen ? "disabled" : ""}>${t(P.notif.markRead)}</button>
     </div>
     <ul class="notif-list">
-      ${items.map(a => `<li><a href="report.html?id=${a.report}">
+      ${items.map(a => `<li><a href="report?id=${a.report}">
         <span class="notif-when">${t(P.notifTypes[a.type])} · <time title="${new Date(Date.now() - a.ago * 60000).toLocaleString(LANG)}">${timeAgo(a.ago)}</time></span>
         <span class="notif-text"><b>${t(byId(a.report).title)}</b>: ${t(a.text)}</span>
       </a></li>`).join("")}
@@ -449,7 +449,7 @@ function openPalette() {
       group: "reports", icon: DATA.domains[r.domain].icon || "grid", label: t(r.title),
       hint: t(DATA.domains[r.domain].name),
       hay: `${allText(r.title)} ${allText(r.summary)} ${allText(r.tags)}`,
-      run: go(`report.html?id=${r.id}`),
+      run: go(`report?id=${r.id}`),
     })),
     { group: "actions", icon: "plus", label: t(PL.request), hay: "request yêu cầu báo cáo mới", run: () => { dlg.close(); openRequest(); } },
     { group: "actions", icon: "globe", label: t(LANG === "vi" ? PL.toEn : PL.toVi), hay: "language ngôn ngữ english tiếng việt",
@@ -593,7 +593,7 @@ function openGuestDialog() {
     store.remove("notifSeen");
     track("login", { method: "guest" });
     window.Tracker?.flush();
-    location.href = "index.html";
+    location.href = "./";
   };
   form.name.focus();
 }
@@ -738,7 +738,7 @@ function renderContinue() {
   if (!r) r = DATA.reports[0];
 
   document.querySelector(".panel-continue").innerHTML = `
-    <a class="resume" href="report.html?id=${r.id}&page=${page}">
+    <a class="resume" href="report?id=${r.id}&page=${page}">
       <img src="${pageSrc(r, r.from + page - 1)}" alt="" width="160" height="100" loading="lazy" decoding="async">
       <span class="resume-text">
         <span class="resume-label">${t(seen ? P.continue.title : P.continue.featured)}</span>
@@ -766,7 +766,7 @@ function renderNav() {
     const reps = DATA.reports.filter(r => r.domain === k);
     return row([k, DATA.domains[k].icon || "grid", t(DATA.domains[k].name), reps.length]) +
       `<div class="nav-reports">${reps.map(r =>
-        `<a href="report.html?id=${r.id}" title="${t(r.title)}">${t(r.title)}</a>`).join("")}</div>`;
+        `<a href="report?id=${r.id}" title="${t(r.title)}">${t(r.title)}</a>`).join("")}</div>`;
   }).join("");
 
   const nav = document.querySelector(".nav-list");
@@ -788,7 +788,7 @@ function cardHTML(r, pinned) {
   const P = DATA.portal;
   const n = totalPages(r);
   return `
-    <a class="card-link" href="report.html?id=${r.id}">
+    <a class="card-link" href="report?id=${r.id}">
       <div class="card-frame">
         <img src="${pageSrc(r, r.from)}" alt="" width="640" height="400" loading="lazy" decoding="async">
       </div>
@@ -1275,8 +1275,8 @@ function render() {
 (async function init() {
   const page = document.body.dataset.page;
   // Đã đăng nhập thì khỏi qua trang đăng nhập; chưa đăng nhập thì không vào được cổng
-  if (page === "login" && session.active()) { location.replace("index.html"); return; }
-  if (page !== "login" && !session.active()) { location.replace("login.html"); return; }
+  if (page === "login" && session.active()) { location.replace("./"); return; }
+  if (page !== "login" && !session.active()) { location.replace("login"); return; }
 
   document.documentElement.lang = LANG;
   await loadData();

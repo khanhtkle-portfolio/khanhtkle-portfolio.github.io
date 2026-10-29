@@ -17,7 +17,7 @@
 
   <!-- Chưa đăng nhập (hoặc phiên đã hết hạn) thì chuyển về trang đăng nhập -->
   <script>
-    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login.html"); } catch (_) {}
+    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login"); } catch (_) {}
   </script>
 
   <!-- Phông chữ Inter (có bộ ký tự tiếng Việt) từ Google Fonts -->
@@ -32,7 +32,7 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="topbar">
-    <a class="brand home-brand" href="index.html">
+    <a class="brand home-brand" href="./">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 32 32"><path d="M9 22v-6m7 6V10m7 12v-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
       </span>

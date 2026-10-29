@@ -16,7 +16,7 @@
 
   <!-- Chưa đăng nhập (hoặc phiên đã hết hạn) thì chuyển về trang đăng nhập -->
   <script>
-    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login.html"); } catch (_) {}
+    try { if (!(+localStorage.getItem("auth") > Date.now())) location.replace("login"); } catch (_) {}
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
        Chuông và avatar nằm đúng chỗ như trang chủ. -->
   <header class="topbar topbar-viewer">
     <div class="tb-left">
-      <a class="back" href="index.html">
+      <a class="back" href="./">
         <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg>
       </a>
       <div class="hd">
@@ -104,7 +104,7 @@
       <div class="stage-msg" hidden>
         <p class="empty-title"></p>
         <p class="empty-text"></p>
-        <a class="btn" href="index.html" hidden></a>
+        <a class="btn" href="./" hidden></a>
       </div>
       <button class="nav prev" type="button"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg></button>
       <button class="nav next" type="button"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></svg></button>
